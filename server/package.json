@@ -1,0 +1,18 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "For facilitating the throwing of messages back and forth down the hall. (That's what \"mess hall\" means, right?)",
+  "homepage": "https://github.com/MartinRosenberg/mess-hall#readme",
+  "bugs": {
+    "url": "https://github.com/MartinRosenberg/mess-hall/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MartinRosenberg/mess-hall.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Martin Rosenberg <Martin.B.Rosenberg@gmail.com> (https://martinbrosenberg.com)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

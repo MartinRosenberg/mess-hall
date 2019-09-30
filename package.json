@@ -1,0 +1,25 @@
+{
+  "name": "mess-hall",
+  "version": "0.0.1",
+  "private": true,
+  "description": "For throwing messages back and forth down the hall. (That's what \"mess hall\" means, right?)",
+  "keywords": [],
+  "homepage": "https://github.com/MartinRosenberg/mess-hall#readme",
+  "bugs": {
+    "url": "https://github.com/MartinRosenberg/mess-hall/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MartinRosenberg/mess-hall.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Martin Rosenberg <Martin.B.Rosenberg@gmail.com> (https://martinbrosenberg.com)",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "client": "yarn workspaces client",
+    "server": "yarn workspaces server"
+  }
+}
