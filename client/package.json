@@ -13,9 +13,18 @@
   "license": "GPL-3.0-or-later",
   "author": "Martin Rosenberg <Martin.B.Rosenberg@gmail.com> (https://martinbrosenberg.com)",
   "scripts": {
-    "build": "echo '[ERROR] Script not specified' && exit 1",
-    "dev": "echo '[ERROR] Script not specified' && exit 1",
-    "start": "echo '[ERROR] Script not specified' && exit 1",
+    "build": "parcel build index.html",
+    "dev": "yarn start",
+    "start": "parcel index.html",
     "test": "echo '[ERROR] Script not specified' && exit 1"
+  },
+  "dependencies": {
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "babel-preset-nano-react-app": "^0.1.0",
+    "parcel-bundler": "^1.12.3"
   }
 }
