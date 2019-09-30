@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import express from 'express'
 import socketIO from 'socket.io'
 
+import { Event } from './Event'
+
 // dotenv
 dotenv.config()
 
@@ -18,10 +20,10 @@ const server = app.listen(port, () => {
 
 // socket.io
 const io = socketIO(server)
-io.on(`connection`, (client) => {
+io.on(Event.CONNECT, (client) => {
   console.log(`Client ${client.id} connected`)
 
-  client.on(`disconnect`, () => {
+  client.on(Event.DISCONNECT, () => {
     console.log(`Client ${client.id} disconnected`)
   })
 })
