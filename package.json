@@ -19,7 +19,13 @@
     "server"
   ],
   "scripts": {
-    "client": "yarn workspaces client",
-    "server": "yarn workspaces server"
+    "build": "concurrently 'yarn client build' 'yarn server build'",
+    "client": "yarn workspace client",
+    "dev": "concurrently --kill-others-on-fail 'yarn client dev' 'yarn server dev'",
+    "server": "yarn workspace server",
+    "start": "concurrently --kill-others-on-fail 'yarn client start' 'yarn server start'"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.2"
   }
 }

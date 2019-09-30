@@ -13,6 +13,9 @@
   "license": "GPL-3.0-or-later",
   "author": "Martin Rosenberg <Martin.B.Rosenberg@gmail.com> (https://martinbrosenberg.com)",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "echo '[ERROR] Script not specified' && exit 1",
+    "dev": "echo '[ERROR] Script not specified' && exit 1",
+    "start": "echo '[ERROR] Script not specified' && exit 1",
+    "test": "echo '[ERROR] Script not specified' && exit 1"
   }
 }
