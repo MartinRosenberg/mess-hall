@@ -19,6 +19,12 @@
     "start": "node build/app.js",
     "test": "echo '[ERROR] Script not specified' && exit 1"
   },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
