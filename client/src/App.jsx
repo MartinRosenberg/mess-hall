@@ -1,72 +1,32 @@
 import React, { useState } from 'react'
-import socketIO from 'socket.io-client'
 
-import { Event } from 'server/src/Event'
+import { ChatLog } from './ChatLog'
+import { useWebSocket } from './customHooks'
+import { MessageForm } from './MessageForm'
+
+const port = process.env.SERVER_PORT || 4001
+const url = `ws://localhost:${port}/`
 
 const App = () => {
-  const io = socketIO('ws://localhost:4001/')
+  const [messages, setMessages] = useState([])
+  const addMessage = (message) => setMessages([...messages, message])
 
-  // State fields
-  const [username, setUsername] = useState('')
-  const [message, setMessage] = useState('')
-  const [chatLog, setChatLog] = useState([])
-
-  // Setters
-  // username
-  const changeUsername = (evt) => setUsername(evt.target.value)
-  // message
-  const changeMessage = (evt) => setMessage(evt.target.value)
-  const sendMessage = (evt) => {
-    evt.preventDefault()
-    io.emit(Event.MESSAGE, {
-      id: Math.random(), // lol
-      author: username,
-      body: message,
-    })
-    setMessage('')
-  }
-  // messages
-  const addMessage = message => setChatLog([...chatLog, message])
-
-  // Listeners
-  io.on(Event.MESSAGE, (message) => {
-    addMessage(message)
-  })
+  const socket = useWebSocket(url, { onMessage: addMessage }, { debug: true })
 
   return (
     <>
-      <ul id="chatLog">
-        {chatLog.map(message => (
-          <li key={message.id}>
-            {message.author}: {message.body}
+      <header>
+        <h1>Mess Hall</h1>
+      </header>
+      <MessageForm onMessage={addMessage} socket={socket}/>
+      <ul style={{ padding: 0, listStyleType: `none` }}>
+        {console.log(messages)}
+        {messages.map(({ author, body, id }) => (
+          <li key={id}>
+            <strong>{author}:</strong> {body}
           </li>
         ))}
       </ul>
-      <hr />
-      <div>
-        <div>
-          <label htmlFor="username">Username{' '}</label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={changeUsername}
-          />
-        </div>
-        <div>
-          <label htmlFor="message">Message{' '}</label>
-          <input
-            type="text"
-            name="message"
-            value={message}
-            onChange={changeMessage}
-          />
-        </div>
-        <br/>
-        <button onClick={sendMessage}>
-          Send
-        </button>
-      </div>
     </>
   )
 }
