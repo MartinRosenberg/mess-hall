@@ -2,7 +2,8 @@ import dotenv from 'dotenv'
 import express from 'express'
 import WebSocket from 'ws'
 
-import { Event } from './Event'
+import { Event } from './enum/Event'
+import { Header } from './enum/Header'
 
 // dotenv
 dotenv.config()
@@ -16,10 +17,10 @@ const server = app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })
 
-// WebSocket
+// ws
 const wss = new WebSocket.Server({ server })
 wss.on(Event.OPEN, (client, request) => {
-  const id = request.headers['sec-websocket-key']
+  const id = request.headers[Header.SEC_WEBSOCKET_KEY]
 
   console.log(`Client ${id} connected`)
 

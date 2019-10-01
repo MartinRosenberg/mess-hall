@@ -30,24 +30,27 @@ const useWebSocket = (url, handlers = {}, options = {}) => {
 
   useEffect(() => {
     socket.onclose = (event) => {
-      if (debug) console.log(`[server] Disconnected`)
-      if (typeof onClose === 'function') onClose(event)
+      const { code, reason } = event
+      if (debug) console.log(`[server] Disconnected: ${code} ${reason}`)
+      if (typeof onClose === `function`) onClose(code)
       if (reconnect) setSocket(new WebSocket(url))
     }
 
     socket.onerror = (event) => {
-      if (debug) console.error(`[server] Error thrown`)
-      if (typeof onError === 'function') onError(event)
+      const { error } = event
+      if (debug) console.error(`[server] ${error}`)
+      if (typeof onError === `function`) onError(error)
     }
 
     socket.onmessage = (event) => {
-      if (debug) console.log(`[server] Received message: ${event.data}`)
-      if (typeof onMessage === 'function') onMessage(event)
+      const { data: message } = event
+      if (debug) console.log(`[server] Received message: ${message}`)
+      if (typeof onMessage === `function`) onMessage(message)
     }
 
     socket.onopen = (event) => {
       if (debug) console.log(`[server] Connected`)
-      if (typeof onOpen === 'function') onOpen(event)
+      if (typeof onOpen === `function`) onOpen(event)
     }
   }, [])
 
