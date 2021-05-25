@@ -7,7 +7,7 @@ import { useInput } from '../../customHooks'
 const chance = new Chance()
 
 const MessageForm = ({ socket, onMessage: handleMessage }) => {
-  const nameState = useInput(chance.animal({ type: `zoo` }))
+  const nameState = useInput()
   const messageState = useInput()
 
   const handleSubmit = (event) => {
